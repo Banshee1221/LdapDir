@@ -1,8 +1,8 @@
 import ldap
-from userNode import userNode
+from jsonCreator import jsonCreator
 from collections import Counter
 
-Formatted = []
+Formatted = {}
 test = []
 
 tmpFile = open('creds.dat', 'r')
@@ -84,7 +84,8 @@ def formatter(ldap_string):
     if len(tel) < 5:
         tel = tel1
 
-    Formatted.append(userNode(fn, sn, mail, title, mobile, tel, skype, loc, man, ip))
+    tmpName = str(fn + " " + sn)
+    Formatted[tmpName] = (jsonCreator(fn, sn, mail, title, mobile, tel, skype, loc, man, ip).toObject())
 
 
 def ldap_search(ldap_uri, base, query, user, passwd):
@@ -109,7 +110,6 @@ def ldap_search(ldap_uri, base, query, user, passwd):
                 break
             else:
                 if result_type == ldap.RES_SEARCH_ENTRY:
-                    #formatter(result_data)
                     result_set.append(result_data)
 
         if len(result_set) == 0:
@@ -123,9 +123,15 @@ def ldap_search(ldap_uri, base, query, user, passwd):
 
     finally:
         l.unbind_s()
-        #print(emails)
 
 ldap_search(link, base, query, username, password)
 
 for items in result_set:
     formatter(items)
+
+for keys in Formatted:
+    tmpManager = Formatted[keys]["manager"]
+    if tmpManager != '':
+        Formatted[tmpManager]['manages'] += str(" " + keys)
+
+print Formatted
