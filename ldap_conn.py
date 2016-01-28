@@ -1,9 +1,10 @@
 import ldap
 from jsonCreator import jsonCreator
-from collections import Counter
+from userNode import userNode
+import json
 
 Formatted = {}
-test = []
+tree = []
 
 tmpFile = open('creds.dat', 'r')
 username, password = eval(tmpFile.readline())
@@ -19,10 +20,8 @@ link = 'ldap://cpt-dc-01'
 base = 'dc=visionoss,dc=int'
 
 query = '(&(objectCategory=person)(objectclass=user)(!(UserAccountControl:1.2.840.113556.1.4.803:=2)))'
-result_set = []
 
-
-def formatter(ldap_string):
+def formatter(ldap_string, array):
     minor_data = ldap_string[0][0]
     major_data = ldap_string[0][1]
     if len(major_data['displayName'][0].split(" ")) < 2:
@@ -84,8 +83,9 @@ def formatter(ldap_string):
     if len(tel) < 5:
         tel = tel1
 
+    node = userNode(fn, sn, mail, title, mobile, tel, skype, loc, man, ip)
     tmpName = str(fn + " " + sn)
-    Formatted[tmpName] = (jsonCreator(fn, sn, mail, title, mobile, tel, skype, loc, man, ip).toObject())
+    array[tmpName] = node
 
 
 def ldap_search(ldap_uri, base, query, user, passwd):
@@ -110,13 +110,13 @@ def ldap_search(ldap_uri, base, query, user, passwd):
                 break
             else:
                 if result_type == ldap.RES_SEARCH_ENTRY:
-                    result_set.append(result_data)
+                    formatter(result_data, Formatted)
 
-        if len(result_set) == 0:
+        if len(Formatted) == 0:
             print('No results found.')
             return
 
-        return result_set
+        return Formatted
 
     except ldap.LDAPError, e:
         print('LDAPError: %s.' % e)
@@ -126,12 +126,12 @@ def ldap_search(ldap_uri, base, query, user, passwd):
 
 ldap_search(link, base, query, username, password)
 
-for items in result_set:
-    formatter(items)
+for k in Formatted.keys():
+    userObj = Formatted[k]
+    currentUserManager = Formatted[k].getMan()
+    managerObj = ''
+    if currentUserManager != '':
+        managerObj = Formatted[currentUserManager]
+        userObj.setParent(managerObj)
+        managerObj.addChild(userObj)
 
-for keys in Formatted:
-    tmpManager = Formatted[keys]["manager"]
-    if tmpManager != '':
-        Formatted[tmpManager]['manages'] += str(" " + keys)
-
-print Formatted
