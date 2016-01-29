@@ -22,7 +22,7 @@ class userNode:
         return self.last_name
 
     def getTitle(self):
-        return self.title
+        return self.title.replace(",", " -")
 
     def getMail(self):
         return self.email

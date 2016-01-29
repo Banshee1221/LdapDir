@@ -1,70 +1,30 @@
-class jsonCreator:
+with open('orgchart.txt', "w"):
+        pass
+writer = open('orgchart.txt', "a")
+counter = 0
 
-    first_name = ''
-    last_name = ''
-    title = ''
-    email = ''
-    mobile = ''
-    tel = ''
-    skype = ''
-    location = ''
-    manager = ''
-    IPtel = ''
-    manages = ''
 
-    def __init__(self, fname, lname, email, title=None, mobile=None, tel=None, skype=None, location=None, manager=None,
-                 ip=None):
-        self.first_name = fname
-        self.last_name = lname
-        self.title = title
-        self.email = email
-        self.mobile = mobile
-        self.tel = tel
-        self.skype = skype
-        self.location = location
-        self.manager = manager
-        self.ip = ip
+def json_parse(dict_obj, ceo):
 
-    def toObject(self):
+    recurse_travel(dict_obj[ceo])
 
-        data = {"first_name": self.first_name, "last_name": self.last_name, "title": self.title, "email": self.email,
-                "mobile": self.mobile, "tel": self.tel, "skype": self.skype, "location": self.location,
-                "manager": self.manager, "IPtel": self.IPtel, "manages": self.manages}
 
-        return data
+def recurse_travel(cur_obj):
+    global counter
+    concat = "-" * counter
+    if counter > 0:
+        concat = "-" * counter + " "
+    counter += 1
+    writer.write(str(concat+cur_obj.getFn() + " " + cur_obj.getLn() + "," + cur_obj.getTitle() + "\n"))
+    for items in cur_obj.getChilds():
+        recurse_travel(items)
+    counter -= 1
 
-    def getFn(self):
-        return self.first_name
-
-    def getLn(self):
-        return self.last_name
-
-    def getTitle(self):
-        return self.title
-
-    def getMail(self):
-        return self.email
-
-    def getMobile(self):
-        return self.mobile
-
-    def getTel(self):
-        return self.tel
-
-    def getSkype(self):
-        return self.skype
-
-    def getLoc(self):
-        return self.location
-
-    def getMan(self):
-        return self.manager
-
-    def getIP(self):
-        return self.ip
-
-    def prettyPrint(self):
-        print "==========\nName: %s %s\nTitle: %s\nEmail: %s\nTelephone: %s\nMobile: %s\nIP Tel: %s\nSkype Name: %s\n" \
-              "Manager: %s\nLocation: %s\n==========\n" % (self.first_name, self.last_name, self.title, self.email,
-                                                          self.tel, self.mobile, self.ip, self.skype, self.manager,
-                                                          self.location)
+    """
+    for items in FO.getChilds():
+        print " - " + items.getFn(), items.getLn()
+        for items2 in items.getChilds():
+            print " -- " + items2.getFn(), items2.getLn()
+            for items3 in items2.getChilds():
+                print " --- " + items3.getFn(), items3.getLn()
+    """

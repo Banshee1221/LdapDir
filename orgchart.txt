@@ -1,122 +1,131 @@
 Mike Frayne,Chief Executive Officer
-- Leigh Meintjes,Chief Financial Officer
--- Natasha Scholtz,Finance Manager
---- Wayne Segers,Finance Assistant
---- Justine Hartnick,Office Administrator
-- Norm Halvorson,Chief Operations Officer
--- Carrie Hamlin,Admin
--- Robin-Dee Nomdo,HR Manager
--- Liam Smit,IT Manager
 - Henry Barton,Strategy Director
-- Bill Dellara,VP Product Development
--- Gokhan Erkal,Product Manager
--- Van Hammond, Product Marketing
--- Derek Smith,Product Marketing
-- Hanco Janse van Rensburg,Chief Technical Officer,http://directory.visionoss.int/photos/hanco.jvrensburg.jpg
--- Grant Ongers,PW Developer POC
--- Dan Payne,Product Owner: VOSS-4-UC
--- Renier Sevenster,Product Owner: VOSS-4-UC
-- Jim Ortbals,VP Global Sales
--- Sales
---- Clint Compton,Technical Accounts Director: NA
---- Ian Green,Technical Accounts Director: UK
---- Ina Kelly,Director Strategic Accounts
---- Mike Lyons,Accounts Director: Federal/Enterprise
---- Chris May,VP Business development: APAC
---- Derek Lipscombe,Account Director: UK
---- Stefan Peters,Commercial Director: EMEA
--- Marketing
---- Rachel Chicken,Marketing Manager
--- Pre-Sales/BDM
---- Tim Hanna,Sales Engineering Manager: Global Partners
-- Rob Moore,VP Global Services
--- Rob Hamlin,Director of Solution Engineering
---- David Retief,Sr. SW Engineer
--- Deployment
---- Tim Robinson,Manager Technical Services: NA
----- Paul Brasher,Solutions Architect
----- Therodus Brown,Solutions Architect
----- Ted Garner,Solutions Architect
----- Erick Lewis,Solutions Architect
----- Andy Moskov,Solutions Architect
---- Rob Wilson,Manager Technical Services: UK
----- Daron Hamilton,Solutions Engineer
----- Vincent Rafter,Implementation Engineer
---- Pramukh Fernando,Manager Technical Services: APAC
----- Heather McNicol,Technical Project Manager
----- Sandeep Pokhriyl,Solutions Architect
----- Hung To,Solutions Architect
----- Syed Shahnawaz,Solutions Engineer
---- Chris Bullard Manager Technical Services: EMEA
----- Agnel Anthony,Project Manager
----- Robert Cook,Project Manager
--- Tools
---- Tom Turrington,Manager Service Tools
----- Daniel Blackburn,Deployment Engineer
----- Michael Gatenby,Support Engineer
----- Juan Sanchez,Solutions Engineer
----- Anubha Vijayvargiya,Solutions Engineer
--- Training
---- Hadas Arad,Manager Customer Advocacy
----- Les Anthis,Trainer
----- Darren Penhearow,Trainer
+- Leigh Meintjes,Chief Financial Officer
+-- Natasha Scholtz,Financial Manager
+--- Justine Hartnick,Office Manager
+--- Wayne Segers,Finance Assistant
+- Tanya Linford,PA to Mike Frayne - CEO
 - Steve Riley,VP Engineering
--- Jack Wheeler,Technical Writing Manager
---- Etienne Botha,Sr Technical Writer
---- James Browning,Technical Writer
--- Adele Steyn,Project Manager: VOSS 1
---- Susan Alexander,SW Developer
---- Peter Gibbs,Sr SW Developer
---- Jako Heiburg,Sr SW Developer
---- Joberto Kotze,SW Developer
---- Ross McCallum,SW Developer
---- Sipho Mnisi,SW Developer
---- Grant Wilson,Sr Quality Engineer
---- Dries van Staden,Sr SW Developer
--- Jack Wheeler,Scrum Master: VOSS-4-UC
---- Martin Booyens,Sr SW Developer
---- Shaun Sephton,SW Developer
---- Daniel Browne,Sr SW Developer
---- Werner Smit,SW Developer
---- Nyasha Chigwamba,Product Owner
---- Carl Tesselaar,Application Security Engineer
---- Romain Francis,Sr SW Developer
---- Chris van Wyk,SW Developer
---- Hugo Hamman,Platform Team Lead
---- Johan Venter,Sr SW Developer
---- Osedum Igumbor,SW Developer
---- Chris Visagie,Sr SW Developer
---- Riza Kamalie,Platform Engineer
---- Nicholas Von Waltsleben,Sr SW Developer
---- Kelvin Munzwa,SW Developer
---- Nathan Zhou,SW Developer
---- Valentin Nemeth,Sr SW Developer
--- Stephen D'Alton,L2 Support Manager
---- David Le Roux,Team Lead
---- Kurt October,Support Engineer
---- Saheed Salam,Support Engineer
---- Stephen Samosky,Support Engineer
---- David Selby,Support Engineer
+-- Adele Steyn,Project Manager
+--- Jako Heiberg,Senior Software Developer
+--- Joberto Kotze,Platform Developer
+--- Dries van Staden,Software Developer
+--- Ross McCallum,Software Developer
+--- Susan Alexander,Susan Alexander
+--- Grant Wilson,Senior Test Engineer
+--- Sipho Mnisi,Software Developer
+--- Peter Gibbs,Software Developer
+-- Pierre Jansen van Rensburg,Product Analyst
+--- Clive Crous,Senior Software Developer
+--- Stefan Tredoux,Lync Solutions Architect
+-- Paul Kruger,TDA/Solutions Architect
+-- Mark Trent,Test Engineer
+--- Cameron Summers,Platform Test Engineer
+--- Gary Reid,Test Engineer
+--- Jacques Van Der Westhuizen,Test Engineer
+--- Garth Bosch,Senior Quality Engineer
+--- Constant Van Der Westhuizen,Test Engineer
+--- Marlo Jooste,Test Engineer
+--- Nicolas Kew,Test Automation Engineer
+--- Neil Henderson,Test Automation Engineer
+--- Dean Kayton,Junior Test Engineer
+--- Arno Louwrens,Senior Quality Engineer
+-- Pieter Mouton,Scrum Master
+--- Laurent Fillis,Software Developer
+--- Retief Van Deventer,Software Developer
+--- Keagan Jarvis,Junior Software Developer
+--- Christo Goosen,Junior Software Developer
+--- Schalk Sevenster,Software Developer
+-- Stephen D'Alton,Senior Applications Support Engineer
+--- Jack Wheeler,Project Manager
+---- Johan Venter,Software Developer
+---- Nyasha Chigwamba,Software Developer
+---- Hugo Hamman,Platform Architect
+---- James Akinbami,Solutions Implementation Engineer
+---- Etienne Botha,Technical Writer
+---- James Browning,Technical Writer
+---- Valentin Nemeth,Software Developer
+---- Carl Tesselaar,Platform Security Engineer
+---- Daniel Blackburn,Implementation Engineer
+---- Riza Kamalie,Platform Engineer
+---- Romain Francis,Senior Software Developer
+---- Nicholas von Waltsleben,Platform Developer
+---- Werner Smit,Software Developer
+---- Shaun Sephton,Software Developer
+---- Kelvin Munzwa,Software Developer
+---- Osedum Igumbor,Software Developer
+---- Chris van Wyk,DBA
+---- Nathan Zhou,Software Developer
+---- Chris Visagie,Software Developer
+---- Martin Booyens,Software Developer
 --- Leon Swanepoel,Support Engineer
 --- Monica Tinta,Support Engineer
---- Ashley van der Sandt,Support Engineer
---- Jack Wu,Support Engineer
--- Mark Trent,QA Team Lead: VOSS-4-US
---- Neil Henderson,Sr Quality Engineer
---- Marlo Jooste,Sr Quality Engineer
---- Nicolas Kew,Sr Quality Engineer
---- Dean Kayton,Jr Quality Engineer
---- Arno Louwrens,Quality Engineer
---- Gary Reid,Sr Quality Engineer
---- Cameron Summers,Quality Engineer
---- Constant van der Westhuizen,Quality Engineer,http://directory.visionoss.int/photos/constant.vanderwesthuizen.jpg
--- Pierre Janse van Rensburg,Product Owner
---- Clive Crous,SW Developer
---- Stefan Tredoux,Lync Solutions Architect
--- Pieter Mouton,Scrum Master: Solutions Team
---- Laurent Fillis,SW Developer
---- Christo Goosen,Jr SW Developer
---- Schalk Sevenster,SW Developer
---- Retief van Deventer,Sr SW Developer
--- Paul Kruger,Product Owner
-- Tanya Linford,Personal Assistant
+--- Saheed Salam,Support Engineer
+--- David Le Roux,Support Team Lead
+--- Jack WU,Support Engineer
+--- Stephen Samosky,Applications Support Engineer
+--- Kurt October,Support Engineer
+--- Ashley van der Sandt,Applications Support Engineer
+--- David Selby,Applications Support Engineer
+- Bill Dellara,VP Product Management
+-- Gokhan Erkal,Business Solutions Manager
+-- Derek Smith,Product Marketing Manager
+-- Van Hammond,Product Management
+- Norman Halvorson,Chief Operational Officer
+-- Carrie Hamlin,Richardson Office Administrator
+-- Mitchell Cameron,IT Manager
+--- Faizel Saiet,IT Officer
+--- Eugene de Beste,IT Officer
+-- Robin-Dee Nomdo,HR Manager
+-- Liam Smit,IT Manager
+- Rob Moore,VP Global Services
+-- Tim Robinson,Project Manager
+--- Gerry Pearson,Solutions Architect
+--- Therodus Brown,Implementation Engineer
+--- Bob Williams,Project Manager
+--- Rodney McMillan,Project Manager
+--- Erick Lewis,Project Manager
+--- Andrean Moskov,Solution Architect
+--- Ted Garner,HCS Solutions Architect
+--- Paul Brasher,Senior Solutions Architect
+--- Pamela Bushong,Application Integration Specialist
+-- Rob Wilson,Manager - Technical Services (EMEA)
+--- Daron Hamilton,Solutions Architect
+--- Darrel Bremer,Manager - Technical Services (EMEA)
+--- Vincent Rafter,Implementations Engineer
+-- Hadas Arad,Training Manager
+--- Les Anthis,Solutions Architect
+--- Darren Penhearow,Trainer
+-- Rob Hamlin,Manager - Technical Services (NA)
+--- David Retief,TDA/Solutions Architect
+-- Tom Turrington,Tools Development Team Lead
+--- Arran Cardnell,Junior Software Developer
+--- Daniel Browne,Software Developer
+--- Anubha Vijayvargiya,Software Developer
+--- Juan Sanchez,Solutions Engineer
+--- Michael Gatenby,Support Engineer
+-- Pramukh Fernando,Manager - Technical Services (APAC)
+--- Syed Shahnawaz,Solutions Engineer
+--- Sandeep Pokhriyal,Solutions Architect
+--- Heather McNicol,Technical Project Manager
+--- Hung To,Solution Architect – APAC
+-- Tom Davis,Part time Contractor
+-- Chris Bullard,Senior Programme Manager: Global PMO
+--- Agnel Anthony,Project Manager
+--- Robert Cook,Project Manager
+-- Paul Huddleston,Pre Sales Consultant
+- Jim Ortbals,Vice President: Partners
+-- Christopher May,VP Business Development
+-- Stefan Peters,Commercial Director
+-- Clint Compton,Project Manager
+-- Rachel Chicken,Marketing Manager
+--- James Kelley ,Contractor
+-- Tim Hanna,Systems Engineering Manager
+-- Michael Lyons,Strategic Accounts Director
+-- Ian Green,Technical Accounts Director EMEA
+-- Ina Kelly,Strategic Accounts Director
+-- Derek Lipscombe,Sales Director EMEA
+- Hanco Janse van Rensburg,Chief Technical Officer
+-- Grant Ongers,Software Developer
+-- Renier Sevenster,Team Lead: Platform
+-- Dan Payne,Software Developer

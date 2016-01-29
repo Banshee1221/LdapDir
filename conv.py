@@ -5,7 +5,7 @@ ppl = []
 current = []
 lvl = 0
 def dataadd(name, pos, boss, img):
-    pic = img and img or "http://directory.visionoss.int/photos/%s.jpg" % name.lower().replace(' ','.')
+    pic = img and img or "http://directory.visionoss.int/photos/%s.jpg" % name.lower().replace(' ','.', 1).replace(' ', '')
     return [{'v':name,'f':'%s<div style="color:red; font-style:italic"><img src="%s" />%s</div>'%(name, pic, pos)}, boss and boss or '', pos]
 
 for line in data.split('\n'):
