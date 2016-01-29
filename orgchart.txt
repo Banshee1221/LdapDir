@@ -71,7 +71,7 @@ Mike Frayne,Chief Executive Officer
 -- Gokhan Erkal,Business Solutions Manager
 -- Derek Smith,Product Marketing Manager
 -- Van Hammond,Product Management
-- Norman Halvorson,Chief Operational Officer
+- Norm Halvorson,Chief Operational Officer
 -- Carrie Hamlin,Richardson Office Administrator
 -- Mitchell Cameron,IT Manager
 --- Faizel Saiet,IT Officer

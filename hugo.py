@@ -4,7 +4,7 @@ writer = open('orgchart.txt', "a")
 counter = 0
 
 
-def json_parse(dict_obj, ceo):
+def hugo_create(dict_obj, ceo):
 
     recurse_travel(dict_obj[ceo])
 

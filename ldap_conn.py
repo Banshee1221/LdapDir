@@ -1,6 +1,7 @@
 import ldap
 from Formatter import formatter
-from jsonCreator import json_parse
+from hugo import hugo_create
+from json_create import json_create
 
 Formatted = {}
 tree = []
@@ -61,4 +62,5 @@ for k in Formatted.keys():
         userObj.setParent(managerObj)
         managerObj.addChild(userObj)
 
-json_parse(Formatted, "Mike Frayne")
+hugo_create(Formatted, "Mike Frayne")
+json_create(Formatted, "Mike Frayne" )
