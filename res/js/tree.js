@@ -300,9 +300,9 @@ function drawTree(treeData) {
           if (d.image)
             return d.image;
           else if (d.isFemale)
-            return "images/placeholder-female.png";
+            return "../images/placeholder-female.png";
           else
-            return "images/placeholder.png";
+            return "../images/placeholder.png";
         });
         node.select('image').attr("title", function(d) {
           return "<strong>" + englishName(d) + "</strong>. " + (d.bio ? d.bio : "");
