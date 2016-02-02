@@ -3,7 +3,7 @@ from distutils.core import setup
 setup(
     name='AD-Chart',
     version='20160202_1',
-    packages=[''],
+    packages=['ldap', 'docopt'],
     url='',
     license='GPL v3',
     author='Eugene de Beste',

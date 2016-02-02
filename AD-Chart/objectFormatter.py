@@ -1,4 +1,4 @@
-from storageFunctions import *
+from objectStorer import *
 
 BlackListTerm = ['Administrator', "Admin", "Guest", "Voss", "VOSS", "Machine", "move", "IT", "Support", "Test",
                  "Lab", "Temp", "Kiosk"]
