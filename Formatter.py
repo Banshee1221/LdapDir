@@ -70,7 +70,7 @@ def formatter(ldap_string, array):
     tmpName = str(fn + " " + sn)
     array[tmpName] = node
 
-def jsonFormatter(ldap_string, array):
+def jsonFormatter(ldap_string, array, root):
 
     major_data = ldap_string[0][1]
     if len(major_data['displayName'][0].split(" ")) < 2:
@@ -129,6 +129,6 @@ def jsonFormatter(ldap_string, array):
     if len(tel) < 5:
         tel = tel1
 
-    node = userDict(fn, sn, mail, title, mobile, tel, skype, loc, man, ip)
+    node = userDict(fn, sn, mail, title, mobile, tel, skype, loc, man, ip, root)
     tmpName = str(fn + " " + sn)
     array[tmpName] = node
