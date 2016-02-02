@@ -1,5 +1,4 @@
-from userDict import userDict
-from userNode import userNode
+from storageFunctions import *
 
 BlackListTerm = ['Administrator', "Admin", "Guest", "Voss", "VOSS", "Machine", "move", "IT", "Support", "Test",
                  "Lab", "Temp", "Kiosk"]

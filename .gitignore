@@ -2,4 +2,5 @@
 .idea/*
 creds.dat
 *.pyc
-res/json
+res/
+orgchart.txt
