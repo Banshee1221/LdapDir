@@ -1,5 +1,5 @@
-from userNode import userNode
 from userDict import userDict
+from userNode import userNode
 
 BlackListTerm = ['Administrator', "Admin", "Guest", "Voss", "VOSS", "Machine", "move", "IT", "Support", "Test",
                  "Lab", "Temp", "Kiosk"]
@@ -8,7 +8,6 @@ Exclusion_list = ["owen.bridle@visionoss.int", "mario.vanriesen@visionoss.int", 
 
 
 def formatter(ldap_string, array):
-
     major_data = ldap_string[0][1]
     if len(major_data['displayName'][0].split(" ")) < 2:
         return -1
@@ -70,8 +69,8 @@ def formatter(ldap_string, array):
     tmpName = str(fn + " " + sn)
     array[tmpName] = node
 
-def jsonFormatter(ldap_string, array):
 
+def jsonFormatter(ldap_string, array):
     major_data = ldap_string[0][1]
     if len(major_data['displayName'][0].split(" ")) < 2:
         return -1

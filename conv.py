@@ -1,12 +1,17 @@
 #!/usr/bin/python
-from pprint import pprint
+
 data = open('orgchart.txt').read()
 ppl = []
 current = []
 lvl = 0
+
+
 def dataadd(name, pos, boss, img):
-    pic = img and img or "http://directory.visionoss.int/photos/%s.jpg" % name.lower().replace(' ','.', 1).replace(' ', '')
-    return [{'v':name,'f':'%s<div style="color:red; font-style:italic"><img src="%s" />%s</div>'%(name, pic, pos)}, boss and boss or '', pos]
+    pic = img and img or "http://directory.visionoss.int/photos/%s.jpg" % name.lower().replace(' ', '.', 1).replace(' ',
+                                                                                                                    '')
+    return [{'v': name, 'f': '%s<div style="color:red; font-style:italic"><img src="%s" />%s</div>' % (name, pic, pos)},
+            boss and boss or '', pos]
+
 
 for line in data.split('\n'):
     if not line:
@@ -15,20 +20,20 @@ for line in data.split('\n'):
         img = None
         lvl = len(line.split()[0].split('-'))
         name = line[lvl:].split(',')[0]
-        pos=''
+        pos = ''
         if ',' in line:
             pos = line[lvl:].split(',')[1]
 
-        if ',' in line and len(line.split(',')) >2:
+        if ',' in line and len(line.split(',')) > 2:
             img = line[lvl:].split(',')[2]
         if lvl > len(current):
             current.append(name)
         elif lvl == len(current):
-            current[lvl-1] = name
+            current[lvl - 1] = name
         elif lvl < len(current):
-            current = current[0:lvl-1:]
+            current = current[0:lvl - 1:]
             current.append(name)
-        boss = current[lvl-2]
+        boss = current[lvl - 2]
         ppl.append(dataadd(name, pos, boss, img))
     else:
         name = line.split(',')[0]

@@ -1,14 +1,14 @@
 class userDict:
-
     def __init__(self, fname, lname, email, title=None, mobile=None, tel=None, skype=None, location=None, manager=None,
                  ip=None, image=''):
         self.parent = None
         self.name = str(fname + " " + lname)
         self.manager = manager
-        self.image = "http://directory.visionoss.int/photos/%s.jpg" % self.name.lower().replace(' ','.', 1).replace(' ', '')
+        self.image = "http://directory.visionoss.int/photos/%s.jpg" % self.name.lower().replace(' ', '.', 1).replace(
+            ' ', '')
         self.bio = str("<br />Title: " + title +
-              "<br />Email: " + email + "<br />Mobile: " + mobile + "<br />Telephone: " + tel + "<br />Skype: " +
-              skype + "<br />Location: " + location + "<br />IP No.: " + ip)
+                       "<br />Email: " + email + "<br />Mobile: " + mobile + "<br />Telephone: " + tel + "<br />Skype: " +
+                       skype + "<br />Location: " + location + "<br />IP No.: " + ip)
         self.children = []
 
     def getMan(self):

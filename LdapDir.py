@@ -1,4 +1,3 @@
-
 """LdapDir
 
 Usage:
@@ -12,12 +11,11 @@ Options:
     --json      Use the JSON output format
 
 """
-from docopt import docopt
 import ldap
-from Formatter import jsonFormatter
-from Formatter import formatter
-from writer import hugo_create
-from writer import json_create
+from docopt import docopt
+
+from Formatter import *
+from writer import *
 
 arguments = ""
 if __name__ == '__main__':
@@ -25,7 +23,6 @@ if __name__ == '__main__':
 
 
 def ldap_search(ldap_uri, base, query, user, passwd, root):
-
     try:
         l = ldap.initialize(ldap_uri)
         l.set_option(ldap.OPT_REFERRALS, 0)
@@ -62,6 +59,7 @@ def ldap_search(ldap_uri, base, query, user, passwd, root):
 
     finally:
         l.unbind_s()
+
 
 tmpFile = open('creds.dat', 'r')
 username, password = eval(tmpFile.readline())

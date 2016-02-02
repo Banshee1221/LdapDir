@@ -1,5 +1,4 @@
 class userNode:
-
     def __init__(self, fname, lname, email, title=None, mobile=None, tel=None, skype=None, location=None, manager=None,
                  ip=None):
         self.parent = None
@@ -59,6 +58,7 @@ class userNode:
 
     def prettyPrint(self):
         print "==========\nName: %s %s\nTitle: %s\nEmail: %s\nTelephone: %s\nMobile: %s\nIP Tel: %s\nSkype Name: %s\n" \
-              "Manager: %s\nLocation: %s\nManages: %s\n==========\n" % (self.first_name, self.last_name, self.title, self.email,
-                                                          self.tel, self.mobile, self.ip, self.skype, self.manager,
-                                                          self.location, str(self.children))
+              "Manager: %s\nLocation: %s\nManages: %s\n==========\n" % (
+              self.first_name, self.last_name, self.title, self.email,
+              self.tel, self.mobile, self.ip, self.skype, self.manager,
+              self.location, str(self.children))
