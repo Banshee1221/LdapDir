@@ -1,4 +1,4 @@
-var jsonPath = "json/" + location.hash.split('#')[1] + ".json";
+var jsonPath = "../json/" + location.hash.split('#')[1] + ".json";
 
 var publicTree;
 var running = 1; // number of running asynchronous functions
