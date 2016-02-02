@@ -1,7 +1,7 @@
 class userDict:
 
     def __init__(self, fname, lname, email, title=None, mobile=None, tel=None, skype=None, location=None, manager=None,
-                 ip=None, CEO=None, image=''):
+                 ip=None, image=''):
         self.parent = None
         self.name = str(fname + " " + lname)
         self.manager = manager
@@ -9,10 +9,7 @@ class userDict:
         self.bio = str("<br />Title: " + title +
               "<br />Email: " + email + "<br />Mobile: " + mobile + "<br />Telephone: " + tel + "<br />Skype: " +
               skype + "<br />Location: " + location + "<br />IP No.: " + ip)
-        if CEO == str(fname + " " + lname):
-            self._children = []
-        else:
-            self.children = []
+        self._children = []
 
     def getMan(self):
         return self.manager
@@ -21,16 +18,10 @@ class userDict:
         self.parent = parentNode
 
     def addChild(self, childNode):
-        try:
-            self.children.append(childNode)
-        except:
-            self._children.append(childNode)
+        self._children.append(childNode)
 
     def getPar(self):
         return self.parent
 
     def getChilds(self):
-        try:
-            return self.children
-        except:
-            return self._children
+        return self._children

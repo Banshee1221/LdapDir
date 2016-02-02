@@ -22,7 +22,7 @@ from writer import json_create
 arguments = ""
 if __name__ == '__main__':
     arguments = docopt(__doc__, version='LdapDir')
-    print arguments
+
 
 def ldap_search(ldap_uri, base, query, user, passwd, root):
 
@@ -47,7 +47,7 @@ def ldap_search(ldap_uri, base, query, user, passwd, root):
             else:
                 if result_type == ldap.RES_SEARCH_ENTRY:
                     if arguments['--json']:
-                        jsonFormatter(result_data, Formatted, root)
+                        jsonFormatter(result_data, Formatted)
                     else:
                         formatter(result_data, Formatted)
 
