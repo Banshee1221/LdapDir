@@ -5,7 +5,7 @@ class userDict:
         self.parent = None
         self.name = str(fname + " " + lname)
         self.manager = manager
-        self.image = "res/images/placeholder.png"
+        self.image = "http://directory.visionoss.int/photos/%s.jpg" % self.name.lower().replace(' ','.', 1).replace(' ', '')
         self.bio = str(fname + " " + lname + "<br />Title: " + title +
               "<br />Email: " + email + "<br />Mobile: " + mobile + "<br />Telephone: " + tel + "<br />Skype: " +
               skype + "<br />Location: " + location + "<br />IP No.: " + ip)
