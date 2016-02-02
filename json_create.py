@@ -1,21 +1,25 @@
 import json
 
 counter = 0
-json_obj = {}
-
 
 def json_create(dict, head):
+
+    global json_obj
+
     CEO = dict[head]
-    json_obj[head] = {"first_name": CEO.getFn(), "last_name": CEO.getLn(), "email": CEO.getMail(),
-                      "title": CEO.getTitle(), "mobile": CEO.getMobile(), "tel": CEO.getTel(), "skype": CEO.getSkype(),
-                      "location": CEO.getLoc(), "manager": CEO.getMan(), "ip": CEO.getIP(), "manages": {}}
+    #print json_obj[head]
+    print "{'name': '%s', 'bio': '%s', 'image': '%s', 'children': [" % (str(CEO.getFn() + " " + CEO.getLn()),
+            str(CEO.getFn() + " " + CEO.getLn() + "<br />Title: " + CEO.getTitle() + "<br />Email: " + CEO.getMail() +
+                "<br />Mobile: " + CEO.getMobile() + "<br />Telephone: " + CEO.getTel() + "<br />Skype: " +
+                CEO.getSkype() + "<br />Location: " + CEO.getLoc()+ "<br />IP No.: " + CEO.getIP()), "none")
     creator(CEO)
 
 
 def creator(dict_obj):
 
     global counter
-    counter += 1
+    global json_obj
+    global tracker
 
     fname = dict_obj.getFn()
     lname = dict_obj.getLn()
@@ -28,8 +32,16 @@ def creator(dict_obj):
     manager = dict_obj.getMan()
     ip = dict_obj.getIP()
 
-    print counter,
-    print dict_obj.getFn() + " " + dict_obj.getLn() + "," + dict_obj.getTitle()
+    string = {"name": str(fname + " " + lname), "bio": str(fname + " " + lname + "<br />Title: " + title +
+              "<br />Email: " + email + "<br />Mobile: " + mobile + "<br />Telephone: " + tel + "<br />Skype: " +
+              skype + "<br />Location: " + location + "<br />IP No.: " + ip), "image": "none",
+              "children": []}
+
+
+    #print counter,
+    counter += 1
+    #print dict_obj.getFn() + " " + dict_obj.getLn() + "," + dict_obj.getTitle()
+    #print string
     for items in dict_obj.getChilds():
         creator(items)
     counter -= 1

@@ -1,8 +1,11 @@
 import ldap
 from Formatter import formatter
+from Formatter import jsonFormatter
 from hugo import hugo_create
-from json_create import json_create
+import json, os
 
+
+root = "Mike Frayne"
 Formatted = {}
 tree = []
 
@@ -37,7 +40,7 @@ def ldap_search(ldap_uri, base, query, user, passwd):
                 break
             else:
                 if result_type == ldap.RES_SEARCH_ENTRY:
-                    formatter(result_data, Formatted)
+                    jsonFormatter(result_data, Formatted)
 
         if len(Formatted) == 0:
             print('No results found.')
@@ -59,8 +62,21 @@ for k in Formatted.keys():
     managerObj = ''
     if currentUserManager != '':
         managerObj = Formatted[currentUserManager]
-        userObj.setParent(managerObj)
-        managerObj.addChild(userObj)
+        #userObj.setParent(managerObj.__dict__)
+        managerObj.addChild(userObj.__dict__)
+        userObj.__dict__.pop("parent", None)
+        userObj.__dict__.pop("manager", None)
+Formatted[root].__dict__.pop("parent", None)
+Formatted[root].__dict__.pop("manager", None)
 
-hugo_create(Formatted, "Mike Frayne")
-json_create(Formatted, "Mike Frayne" )
+dictVer = {}
+
+count = 0
+
+tmpFile = open(os.path.join('res/json/', 'voss.json'), "w")
+tmpFile.write(json.dumps(Formatted[root].__dict__, indent=4, separators=(',', ': ')))
+tmpFile.close()
+
+
+#hugo_create(Formatted, "Mike Frayne")
+#json_create(Formatted, "Mike Frayne")
