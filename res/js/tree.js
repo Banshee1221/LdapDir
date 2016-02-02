@@ -277,10 +277,10 @@ function drawTree(treeData) {
         nodeEnter.append("image")
                  .attr('title', '')
                  .attr("xlink:href", "")
-                 .attr("x", -13)
-                 .attr("y", -13)
-                 .attr("width", 25)
-                 .attr("height", 25);
+                 .attr("x", -15)
+                 .attr("y", -20)
+                 .attr("width", 40)
+                 .attr("height", 40);
 
         // phantom node to give us mouseover in a radius around it
         nodeEnter.append("circle")
