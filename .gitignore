@@ -2,3 +2,4 @@
 .idea/*
 creds.dat
 *.pyc
+res/json
