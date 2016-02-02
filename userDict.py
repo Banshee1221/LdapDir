@@ -9,7 +9,7 @@ class userDict:
         self.bio = str("<br />Title: " + title +
               "<br />Email: " + email + "<br />Mobile: " + mobile + "<br />Telephone: " + tel + "<br />Skype: " +
               skype + "<br />Location: " + location + "<br />IP No.: " + ip)
-        self._children = []
+        self.children = []
 
     def getMan(self):
         return self.manager
@@ -18,10 +18,10 @@ class userDict:
         self.parent = parentNode
 
     def addChild(self, childNode):
-        self._children.append(childNode)
+        self.children.append(childNode)
 
     def getPar(self):
         return self.parent
 
     def getChilds(self):
-        return self._children
+        return self.children
