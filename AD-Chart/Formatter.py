@@ -3,7 +3,7 @@ from userNode import userNode
 
 BlackListTerm = ['Administrator', "Admin", "Guest", "Voss", "VOSS", "Machine", "move", "IT", "Support", "Test",
                  "Lab", "Temp", "Kiosk"]
-LdapFilter = ['objectSid', 'objectGUID', 'photo']
+#LdapFilter = ['objectSid', 'objectGUID', 'photo']
 Exclusion_list = ["owen.bridle@visionoss.int", "mario.vanriesen@visionoss.int", "jenkins@visionoss.int"]
 
 
