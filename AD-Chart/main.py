@@ -58,6 +58,6 @@ for k in Formatted.keys():
 if arguments['--json']:
     Formatted[root].__dict__.pop("parent", None)
     Formatted[root].__dict__.pop("manager", None)
-    json_create(Formatted, "Mike Frayne")
+    json_create(Formatted, root)
 else:
-    hugo_create(Formatted, "Mike Frayne")
+    hugo_create(Formatted, root)

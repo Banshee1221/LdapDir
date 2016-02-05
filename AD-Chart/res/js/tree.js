@@ -1,4 +1,4 @@
-var jsonPath = "res/json/" + location.hash.split('#')[1] + ".json";
+var jsonPath = "res/json/#voss.json";
 
 var publicTree;
 var running = 1; // number of running asynchronous functions
@@ -299,10 +299,8 @@ function drawTree(treeData) {
         node.select('image').attr("xlink:href", function(d) {
           if (d.image)
             return d.image;
-          else if (d.isFemale)
-            return "../images/placeholder-female.png";
           else
-            return "../images/placeholder.png";
+            return "res/images/placeholder.png";
         });
         node.select('image').attr("title", function(d) {
           return "<strong>" + englishName(d) + "</strong>. " + (d.bio ? d.bio : "");
@@ -410,6 +408,11 @@ function drawTree(treeData) {
     // Layout the tree initially and center on the root node.
     update(root);
     centerNode(root);
+
+    // Collapse all children of roots children before rendering.
+    root.children.forEach(function(child){
+		collapse(child);
+	});
 
     // Show biography and picture on hover
     $("body").hoverIntent({
