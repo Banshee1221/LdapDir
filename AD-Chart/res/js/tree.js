@@ -32,10 +32,6 @@ function checkIfDone(){
     setTimeout(checkIfDone,100);
   else
     drawTree(publicTree);
-    // Collapse all children of roots children before rendering.
-    root.children.forEach(function(child){
-		collapse(child);
-	});
 }
 checkIfDone();
 
@@ -161,6 +157,37 @@ function drawTree(treeData) {
         selectedNode = null;
         updateTempConnector();
     };
+
+    // Function to update the temporary connector indicating dragging affiliation
+    var updateTempConnector = function() {
+        var data = [];
+        if (draggingNode !== null && selectedNode !== null) {
+            // have to flip the source coordinates since we did this for the existing connectors on the original tree
+            data = [{
+                source: {
+                    x: selectedNode.y0,
+                    y: selectedNode.x0
+                },
+                target: {
+                    x: draggingNode.y0,
+                    y: draggingNode.x0
+                }
+            }];
+        }
+        var link = svgGroup.selectAll(".templink").data(data);
+
+        link.enter().append("path")
+            .attr("class", "templink")
+            .attr("d", d3.svg.diagonal())
+            .attr('pointer-events', 'none');
+
+        link.attr("d", d3.svg.diagonal());
+
+        link.exit().remove();
+    };
+
+
+    // Function to center node when clicked/dropped so node doesn't get lost when collapsing/moving with large amount of children.
 
     function centerNode(source) {
         scale = zoomListener.scale();
@@ -408,6 +435,11 @@ function drawTree(treeData) {
     root = treeData;
     root.x0 = viewerHeight / 2;
     root.y0 = 0;
+
+        // Collapse all children of roots children before rendering.
+        root.children.forEach(function(child){
+            collapse(child);
+        });
 
     // Layout the tree initially and center on the root node.
     update(root);
