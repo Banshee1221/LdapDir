@@ -242,7 +242,7 @@ function drawTree(treeData) {
                 else
                   return "translate(" + source.y0 + "," + source.x0 + ")";
             })
-            .on('dblclick', click);
+            .on('click', click);
 
         nodeEnter.append("circle")
                  .attr('class', 'nodeCircle')
