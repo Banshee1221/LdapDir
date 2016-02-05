@@ -12,8 +12,11 @@ def formatter(ldap_string, array):
         return -1
     if any(word in major_data['displayName'][0] for word in BlackListTerm):
         return -1
-    if major_data['userPrincipalName'][0] in Exclusion_list:
-        return -1
+    try:
+        if major_data['userPrincipalName'][0] in Exclusion_list:
+            return -1
+    except:
+        print major_data
 
     fn, sn, title, mail, mobile, tel, tel1, skype, loc, man, ip = '', '', '', '', '', '', '', '', '', '', ''
     try:
