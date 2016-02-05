@@ -1,4 +1,4 @@
-var jsonPath = "res/json/#voss.json";
+var jsonPath = "res/json/voss.json";
 
 var publicTree;
 var running = 1; // number of running asynchronous functions
@@ -32,6 +32,10 @@ function checkIfDone(){
     setTimeout(checkIfDone,100);
   else
     drawTree(publicTree);
+    // Collapse all children of roots children before rendering.
+    root.children.forEach(function(child){
+		collapse(child);
+	});
 }
 checkIfDone();
 
@@ -408,11 +412,6 @@ function drawTree(treeData) {
     // Layout the tree initially and center on the root node.
     update(root);
     centerNode(root);
-
-    // Collapse all children of roots children before rendering.
-    root.children.forEach(function(child){
-		collapse(child);
-	});
 
     // Show biography and picture on hover
     $("body").hoverIntent({
