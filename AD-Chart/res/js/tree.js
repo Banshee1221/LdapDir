@@ -128,7 +128,7 @@ function drawTree(treeData) {
         .attr("width", viewerWidth)
         .attr("height", viewerHeight)
         .attr("class", "overlay")
-        .call(zoomListener);
+        .call(zoomListener).on("dblclick.zoom", null);
 
 
     // Helper functions for collapsing and expanding nodes.
@@ -242,7 +242,7 @@ function drawTree(treeData) {
                 else
                   return "translate(" + source.y0 + "," + source.x0 + ")";
             })
-            .on('click', click);
+            .on('dblclick', click);
 
         nodeEnter.append("circle")
                  .attr('class', 'nodeCircle')
@@ -417,7 +417,7 @@ function drawTree(treeData) {
     centerNode(root);
 
     // Show biography and picture on hover
-    $("body").hoverIntent({
+    /*$("body").hoverIntent({
       over: function() {
         var bio = $(this).attr("title");
         var img = $(this).attr("href");
@@ -429,5 +429,22 @@ function drawTree(treeData) {
         $("#bio").fadeOut("fast");
       },
       selector: ".node image"
+    });*/
+
+    // Show biography and picture on click
+
+    $(".node image").click(function () {
+        if ($("#bio").hasClass("id")) {
+            $("#bio").fadeOut("fast").removeClass("id");
+        }
+        else {
+            var bio = $(this).attr("title");
+            var img = $(this).attr("href");
+            $("#bio").html("<img src='" + $(this).attr("href") + "'>" + bio)
+                .addClass("has-image")
+                .addClass("id")
+                .fadeIn("fast");
+        }
     });
-};
+
+}
