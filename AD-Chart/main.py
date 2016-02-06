@@ -40,6 +40,9 @@ if arguments['--json']:
 else:
     Formatted = ldap_search(link, base, query, username, password, 0)
 
+if Formatted == -1:
+    exit(1)
+
 # Create tree from user data
 for k in Formatted.keys():
     userObj = Formatted[k]

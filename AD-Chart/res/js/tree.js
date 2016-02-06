@@ -1,7 +1,7 @@
 var jsonPath = "res/json/voss.json";
 
 var publicTree;
-var running = 1; // number of running asynchronous functions
+var running = 1;
 
 function parseTree(tree, replace) {
     if (typeof replace != "undefined") {
@@ -436,18 +436,12 @@ function drawTree(treeData) {
 
     // Show biography and picture on click
     // Garland Pope - https://stackoverflow.com/questions/6330431/jquery-bind-double-click-and-single-click-separately
-
     var DELAY = 500, clicks = 0, timer = null;
-
-
     $("body").on("click", "g.node image", function () {
         var that = this;
         clicks++;  //count clicks
-
         if (clicks === 1) {
-
             timer = setTimeout(function () {
-
                 if ($("#bio").hasClass("has-image")) {
                     $("#bio").fadeOut("fast", function (){
                         $("#bio")
@@ -462,14 +456,11 @@ function drawTree(treeData) {
                         .addClass("has-image")
                         .fadeIn("fast");
                 }
-                clicks = 0;             //after action performed, reset counter
-
+                clicks = 0;
             }, DELAY);
-
         } else {
-
-            clearTimeout(timer);    //prevent single-click action
-            clicks = 0;             //after action performed, reset counter
+            clearTimeout(timer);
+            clicks = 0;
         }
 
     });
