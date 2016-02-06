@@ -437,7 +437,7 @@ function drawTree(treeData) {
     // Show biography and picture on click
     // Garland Pope - https://stackoverflow.com/questions/6330431/jquery-bind-double-click-and-single-click-separately
 
-    var DELAY = 300, clicks = 0, timer = null;
+    var DELAY = 500, clicks = 0, timer = null;
 
 
     $("body").on("click", "g.node image", function () {
