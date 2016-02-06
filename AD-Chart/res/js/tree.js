@@ -449,9 +449,11 @@ function drawTree(treeData) {
             timer = setTimeout(function () {
 
                 if ($("#bio").hasClass("has-image")) {
-                    $("#bio").fadeOut("fast")
-                        .removeClass("has-image")
-                        .html("");
+                    $("#bio").fadeOut("fast", function (){
+                        $("#bio")
+                            .removeClass("has-image")
+                            .html("");
+                    })
                 }
                 else {
                     var bio = $(that).attr("title");
