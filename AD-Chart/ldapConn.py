@@ -22,7 +22,7 @@ def ldap_search(ldap_uri, base, query, user, passwd, arg):
         )
         while 1:
             result_type, result_data = ldap_conn.result(ldap_result_id, 0)
-            if result_data:
+            if not result_data:
                 break
             else:
                 if result_type == ldap.RES_SEARCH_ENTRY:
