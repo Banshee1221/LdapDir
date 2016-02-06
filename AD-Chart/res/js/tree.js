@@ -3,35 +3,35 @@ var jsonPath = "res/json/voss.json";
 var publicTree;
 var running = 1; // number of running asynchronous functions
 
-function parseTree (tree, replace) {
-  if (typeof replace != "undefined") {
-    replace.children = tree.children;
-    parseTree(tree);
-  } else if (tree.source) {
-    running++;
-    d3.json(tree.source, function(error, treeData) {
-      running--;
-      parseTree(treeData, tree);
-    });
-  } else if (tree.children) {
-    $(tree.children).each(function(){
-      parseTree(this);
-    });
-  }
+function parseTree(tree, replace) {
+    if (typeof replace != "undefined") {
+        replace.children = tree.children;
+        parseTree(tree);
+    } else if (tree.source) {
+        running++;
+        d3.json(tree.source, function (error, treeData) {
+            running--;
+            parseTree(treeData, tree);
+        });
+    } else if (tree.children) {
+        $(tree.children).each(function () {
+            parseTree(this);
+        });
+    }
 }
 
-d3.json(jsonPath, function(error, treeData) {
-  publicTree = treeData;
-  parseTree(publicTree);
-  running--;
+d3.json(jsonPath, function (error, treeData) {
+    publicTree = treeData;
+    parseTree(publicTree);
+    running--;
 });
 
 
-function checkIfDone(){
-  if (running > 0)
-    setTimeout(checkIfDone,100);
-  else
-    drawTree(publicTree);
+function checkIfDone() {
+    if (running > 0)
+        setTimeout(checkIfDone, 100);
+    else
+        drawTree(publicTree);
 }
 checkIfDone();
 
@@ -54,39 +54,48 @@ function drawTree(treeData) {
     // size of the diagram
     var viewerWidth = $(document).width();
     var viewerHeight = $(document).height();
-     
+
     var tree = d3.layout.tree().size([viewerHeight, viewerWidth]);
 
     // define a d3 diagonal projection for use by the node paths later on.
-    var diagonal = d3.svg.diagonal().projection(function(d) {
-      if (vertical)
-        return [d.x, d.y];
-      else
-        return [d.y, d.x];
+    var diagonal = d3.svg.diagonal().projection(function (d) {
+        if (vertical)
+            return [d.x, d.y];
+        else
+            return [d.y, d.x];
     });
 
-    function englishName (d) {
-      return d["english-name"] ? d["english-name"] : d.name;
+    function englishName(d) {
+        var noChildren = d.children && d.children.length > 0 ? d.children : 0;
+        var no_Children = d._children && d._children.length > 0 ? d._children : 0
+        if (noChildren != 0 | no_Children != 0)
+            return d["english-name"] ? d["english-name"] : d.name + ' \267 ';
+        else
+            return d["english-name"] ? d["english-name"] : d.name;
+    }
+
+    function englishNameBio(d) {
+        return d["english-name"] ? d["english-name"] : d.name;
     }
 
     // A recursive helper function for performing some setup by walking through all nodes
     function visit(parent, visitFn, childrenFn) {
-      if (!parent) return;
-      visitFn(parent);
-      var children = childrenFn(parent);
-      if (children) {
-        var count = children.length;
-        for (var i = 0; i < count; i++)
-          visit(children[i], visitFn, childrenFn);
-      }
+        if (!parent) return;
+        visitFn(parent);
+        var children = childrenFn(parent);
+        if (children) {
+            var count = children.length;
+            for (var i = 0; i < count; i++)
+                visit(children[i], visitFn, childrenFn);
+        }
     }
 
     // Call visit function to establish maxLabelLength
-    visit(treeData, function(d) {
-      totalNodes++;
-      maxLabelLength = Math.max(englishName(d).length, maxLabelLength) + 0.06;
-    }, function(d) {
-      return d.children && d.children.length > 0 ? d.children : null;
+    visit(treeData, function (d) {
+        totalNodes++;
+        maxLabelLength = Math.max(englishName(d).length, maxLabelLength) + 0.06;
+    }, function (d) {
+        return d.children && d.children.length > 0 ? d.children : null;
     });
 
     // TODO: Pan function, can be better implemented.
@@ -109,7 +118,7 @@ function drawTree(treeData) {
             d3.select(domNode).select('g.node').attr("transform", "translate(" + translateX + "," + translateY + ")");
             zoomListener.scale(zoomListener.scale());
             zoomListener.translate([translateX, translateY]);
-            panTimer = setTimeout(function() {
+            panTimer = setTimeout(function () {
                 pan(domNode, speed, direction);
             }, 50);
         }
@@ -117,7 +126,7 @@ function drawTree(treeData) {
 
     // Define the zoom function for the zoomable tree
     function zoom() {
-      svgGroup.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
+        svgGroup.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
     }
 
     // define the zoomListener which calls the zoom function on the "zoom" event constrained within the scaleExtents
@@ -149,11 +158,11 @@ function drawTree(treeData) {
         }
     }
 
-    var overCircle = function(d) {
+    var overCircle = function (d) {
         selectedNode = d;
         updateTempConnector();
     };
-    var outCircle = function(d) {
+    var outCircle = function (d) {
         selectedNode = null;
         updateTempConnector();
     };
@@ -198,13 +207,13 @@ function drawTree(treeData) {
         // This prevents the layout looking squashed when new nodes are made visible or looking sparse when nodes are removed
         // This makes the layout more consistent.
         var levelWidth = [1];
-        var childCount = function(level, n) {
+        var childCount = function (level, n) {
 
             if (n.children && n.children.length > 0) {
                 if (levelWidth.length <= level + 1) levelWidth.push(0);
 
                 levelWidth[level + 1] += n.children.length;
-                n.children.forEach(function(d) {
+                n.children.forEach(function (d) {
                     childCount(level + 1, d);
                 });
             }
@@ -218,125 +227,130 @@ function drawTree(treeData) {
             links = tree.links(nodes);
 
         // Set widths between levels based on maxLabelLength.
-        nodes.forEach(function(d) {
-          if (d.depth > maxDepth)
-            maxDepth = d.depth;
-          if (vertical)
-            d.y = (d.depth * (maxLabelLength * 5)); 
-          else
-            d.y = (d.depth * (maxLabelLength * 8)); 
+        nodes.forEach(function (d) {
+            if (d.depth > maxDepth)
+                maxDepth = d.depth;
+            if (vertical)
+                d.y = (d.depth * (maxLabelLength * 5));
+            else
+                d.y = (d.depth * (maxLabelLength * 8));
         });
 
         // Update the nodes…
         node = svgGroup.selectAll("g.node")
-                       .data(nodes, function(d) {
-                         return d.id || (d.id = ++i);
-                       });
+            .data(nodes, function (d) {
+                return d.id || (d.id = ++i);
+            });
 
         // Enter any new nodes at the parent's previous position.
         var nodeEnter = node.enter().append("g")
             .attr("class", "node")
-            .attr("transform", function(d) {
+            .attr("transform", function (d) {
                 if (vertical)
-                  return "translate(" + source.x0 + "," + source.y0 + ")";
+                    return "translate(" + source.x0 + "," + source.y0 + ")";
                 else
-                  return "translate(" + source.y0 + "," + source.x0 + ")";
+                    return "translate(" + source.y0 + "," + source.x0 + ")";
             })
             .on('dblclick', click);
 
         nodeEnter.append("circle")
-                 .attr('class', 'nodeCircle')
-                 .attr("r", 0)
-                 .style("fill", function(d) {
-                   return d._children ? "lightsteelblue" : "#fff";
-                 });
+            .attr('class', 'nodeCircle')
+            .attr("r", 0)
+            .style("fill", function (d) {
+                return d._children ? "lightsteelblue" : "#fff";
+            });
 
         if (vertical) {
-          nodeEnter.append("text")
-            .attr("y", function(d) { 
-             return d.children || d._children ? -18 : 18; })
-            .attr("dy", ".35em")
-            .attr("text-anchor", "middle")
-            .text(function(d) { return englishName(d); })
-            .style("fill-opacity", 1);
+            nodeEnter.append("text")
+                .attr("y", function (d) {
+                    return d.children || d._children ? -18 : 18;
+                })
+                .attr("dy", ".35em")
+                .attr("text-anchor", "middle")
+                .text(function (d) {
+                    return englishName(d);
+                })
+                .style("fill-opacity", 1);
         } else {
-          nodeEnter.append("text")
-              .attr("x", function(d) {
-                return -20;
-              })
-              .attr("dy", ".35em")
-              .attr('class', 'nodeText')
-              .attr("text-anchor", function(d) {
-                return "end";
-              })
-              .text(function(d) {
-                return englishName(d);
-              })
-              .style("fill-opacity", 0);
+            nodeEnter.append("text")
+                .attr("x", function (d) {
+                    return -20;
+                })
+                .attr("dy", ".35em")
+                .attr('class', 'nodeText')
+                .attr("text-anchor", function (d) {
+                    return "end";
+                })
+                .text(function (d) {
+                    return englishName(d);
+                })
+                .style("fill-opacity", 0);
         }
 
         // append an image if one exists
         nodeEnter.append("image")
-                 .attr('title', '')
-                 .attr("xlink:href", "")
-                 .attr("x", -15)
-                 .attr("y", -20)
-                 .attr("width", 40)
-                 .attr("height", 40);
+            .attr('title', '')
+            .attr("xlink:href", "")
+            .attr("x", -15)
+            .attr("y", -20)
+            .attr("width", 40)
+            .attr("height", 40)
+            .attr("onclick", "0")
+            .attr("ondblclick", "0")
 
         // phantom node to give us mouseover in a radius around it
         nodeEnter.append("circle")
             .attr('class', 'ghostCircle')
             .attr("r", 30)
             .attr("opacity", 0.2) // change this to zero to hide the target area
-        .style("fill", "red")
+            .style("fill", "red")
             .attr('pointer-events', 'mouseover')
-            .on("mouseover", function(node) {
+            .on("mouseover", function (node) {
                 overCircle(node);
             })
-            .on("mouseout", function(node) {
+            .on("mouseout", function (node) {
                 outCircle(node);
             });
 
-        node.select('image').attr("xlink:href", function(d) {
-          if (d.image)
-            return d.image;
-          else
-            return "res/images/placeholder.png";
+        node.select('image').attr("xlink:href", function (d) {
+            if (d.image)
+                return d.image;
+            else
+                return "res/images/placeholder.png";
         });
-        node.select('image').attr("title", function(d) {
-          return "<strong>" + englishName(d) + "</strong>. " + (d.bio ? d.bio : "");
+        node.select('image').attr("title", function (d) {
+            return "<strong>" + englishNameBio(d) + "</strong>. " + (d.bio ? d.bio : "");
         });
 
         // Update the text to reflect whether node has children or not.
         node.select('text')
-            .attr("x", function(d) {
+            .attr("x", function (d) {
                 //return d.children || d._children ? -10 : 10;
                 return -20;
             })
-            .attr("text-anchor", function(d) {
+            .attr("text-anchor", function (d) {
                 //return d.children || d._children ? "end" : "start";
                 return "end";
             })
-            .text(function(d) {
+            .text(function (d) {
                 return englishName(d);
             });
 
         // Change the circle fill depending on whether it has children and is collapsed
         node.select("circle.nodeCircle")
             .attr("r", 10)
-            .style("fill", function(d) {
+            .style("fill", function (d) {
                 return d._children ? "lightsteelblue" : "#fff";
             });
 
         // Transition nodes to their new position.
         var nodeUpdate = node.transition()
             .duration(duration)
-            .attr("transform", function(d) {
+            .attr("transform", function (d) {
                 if (vertical)
-                  return "translate(" + d.x + "," + d.y + ")";
+                    return "translate(" + d.x + "," + d.y + ")";
                 else
-                  return "translate(" + d.y + "," + d.x + ")";
+                    return "translate(" + d.y + "," + d.x + ")";
             });
 
         // Fade the text in
@@ -345,11 +359,11 @@ function drawTree(treeData) {
         // Transition exiting nodes to the parent's new position.
         var nodeExit = node.exit().transition()
             .duration(duration)
-            .attr("transform", function(d) {
+            .attr("transform", function (d) {
                 if (vertical)
-                  return "translate(" + source.x + "," + source.y + ")";
+                    return "translate(" + source.x + "," + source.y + ")";
                 else
-                  return "translate(" + source.y + "," + source.x + ")";
+                    return "translate(" + source.y + "," + source.x + ")";
             }).remove();
 
         nodeExit.select("circle").attr("r", 0);
@@ -357,13 +371,17 @@ function drawTree(treeData) {
         nodeExit.select("text").style("fill-opacity", 0);
 
         // Update the links…
-        var link = svgGroup.selectAll("path.link").data(links, function(d) { return d.target.id; });
+        var link = svgGroup.selectAll("path.link").data(links, function (d) {
+            return d.target.id;
+        });
 
         // Enter any new links at the parent's previous position.
         link.enter().insert("path", "g")
             .attr("class", "link")
-            .style('stroke-width', function(d) {return 3*(maxDepth - d.source.depth) + 'px';})
-            .attr("d", function(d) {
+            .style('stroke-width', function (d) {
+                return 3 * (maxDepth - d.source.depth) + 'px';
+            })
+            .attr("d", function (d) {
                 var o = {
                     x: source.x0,
                     y: source.y0
@@ -380,7 +398,7 @@ function drawTree(treeData) {
         // Transition exiting nodes to the parent's new position.
         link.exit().transition()
             .duration(duration)
-            .attr("d", function(d) {
+            .attr("d", function (d) {
                 var o = {
                     x: source.x,
                     y: source.y
@@ -393,7 +411,7 @@ function drawTree(treeData) {
             .remove();
 
         // Stash the old positions for transition.
-        nodes.forEach(function(d) {
+        nodes.forEach(function (d) {
             d.x0 = d.x;
             d.y0 = d.y;
         });
@@ -407,44 +425,50 @@ function drawTree(treeData) {
     root.x0 = viewerHeight / 2;
     root.y0 = 0;
 
-        // Collapse all children of roots children before rendering.
-        root.children.forEach(function(child){
-            collapse(child);
-        });
+    // Collapse all children of roots children before rendering.
+    root.children.forEach(function (child) {
+        collapse(child);
+    });
 
     // Layout the tree initially and center on the root node.
     update(root);
     centerNode(root);
 
-    // Show biography and picture on hover
-    /*$("body").hoverIntent({
-      over: function() {
-        var bio = $(this).attr("title");
-        var img = $(this).attr("href");
-        $("#bio").html("<img src='"+ $(this).attr("href") + "'>" + bio)
-                 .addClass("has-image")
-                 .fadeIn("fast");
-      },
-      out: function() {
-        $("#bio").fadeOut("fast");
-      },
-      selector: ".node image"
-    });*/
-
     // Show biography and picture on click
+    // Garland Pope - https://stackoverflow.com/questions/6330431/jquery-bind-double-click-and-single-click-separately
 
-    $(".node image").click(function () {
-        if ($("#bio").hasClass("id")) {
-            $("#bio").fadeOut("fast").removeClass("id");
+    var DELAY = 300, clicks = 0, timer = null;
+
+
+    $("body").on("click", "g.node image", function () {
+        var that = this;
+        clicks++;  //count clicks
+
+        if (clicks === 1) {
+
+            timer = setTimeout(function () {
+
+                if ($("#bio").hasClass("has-image")) {
+                    $("#bio").fadeOut("fast")
+                        .removeClass("has-image")
+                        .html("");
+                }
+                else {
+                    var bio = $(that).attr("title");
+                    var img = $(that).attr("href");
+                    $("#bio").html("<img src='" + $(that).attr("href") + "'>" + bio)
+                        .addClass("has-image")
+                        .fadeIn("fast");
+                }
+                clicks = 0;             //after action performed, reset counter
+
+            }, DELAY);
+
+        } else {
+
+            clearTimeout(timer);    //prevent single-click action
+            clicks = 0;             //after action performed, reset counter
         }
-        else {
-            var bio = $(this).attr("title");
-            var img = $(this).attr("href");
-            $("#bio").html("<img src='" + $(this).attr("href") + "'>" + bio)
-                .addClass("has-image")
-                .addClass("id")
-                .fadeIn("fast");
-        }
+
     });
-
 }
