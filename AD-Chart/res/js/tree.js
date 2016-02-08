@@ -53,7 +53,7 @@ function drawTree(treeData) {
 
     // size of the diagram
     var viewerWidth = $(document).width();
-    var viewerHeight = $(document).height();
+    var viewerHeight = $(document).height() - 4;
 
     var tree = d3.layout.tree().size([viewerHeight, viewerWidth]);
 
